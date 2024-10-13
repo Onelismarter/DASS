@@ -1,0 +1,2 @@
+make run即可编译运行结果，make clean删除；
+Report文件简要讲述了题目要求的以及修改的remove函数及结果；
