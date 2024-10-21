@@ -586,7 +586,7 @@ public:
      * @param to 结束位置的迭代器.
      * @return iterator 返回删除位置的下一个迭代器.
      */
-    iterator erase(iterator from, iterator to)
+/*     iterator erase(iterator from, iterator to)
     {
         /// 这里其实就是重复调用了单个节点删除的 erase 函数.
         /// 因此这个内循环和外部循环完全一致. 
@@ -594,6 +594,28 @@ public:
         for( iterator itr = from; itr != to; )
             itr = erase( itr );               //因为返回的是删除位置的下一个迭代器
         return to;
+    } */
+
+    iterator erase(iterator from, iterator to)
+    {
+    if (from == to) 
+        return from;  //先判断
+
+    Node* begin_Node = from.current;    //通过迭代器找到当前节点
+    Node* end_Node = to.current;
+
+    begin_Node->prev->next = end_Node;  //安排开始和结尾的节点
+    end_Node->prev = begin_Node->prev;  
+
+    Node* todelete = begin_Node;
+    while (todelete != end_Node)
+    {
+        Node* todelete_next = todelete->next;
+        delete todelete;
+        todelete = todelete_next;
+        --theSize;  
+    }
+    return to;  
     }
 
 private:

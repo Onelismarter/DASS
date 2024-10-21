@@ -85,4 +85,8 @@
     \caption{Valgrind}
 \end{figure}
 
+\section{（可选）.erase()函数的修改}
+原来的.erase()函数在处理删除指定范围内的节点时，采取了反复调用单个节点删除函数的方式，是重复链接操作。
+我优化了一个这种情况下的.erase()函数，并在测试中加以使用。
+
 \end{document}
